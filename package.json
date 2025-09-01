@@ -1,12 +1,19 @@
 {
   "name": "unstoppable-mockery",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "Apache-2.0",
-  "description": "",
+  "description": "Lightweight utility for creating type-safe, fully mocked classes and interfaces for Jest tests",
   "author": "Atlassian",
   "keywords": [
+    "jest",
+    "mock",
+    "testing",
+    "typescript",
+    "typescript-mock",
+    "typescript-mockito",
+    "mockito"
   ],
   "private": false,
   "contributors": [
