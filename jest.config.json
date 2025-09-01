@@ -2,6 +2,5 @@
   "preset": "ts-jest",
   "testEnvironment": "node",
   "collectCoverage": true,
-  "testMatch": ["**/**/*.test.ts"],
-  "passWithNoTests": true
+  "testMatch": ["**/**/*.test.ts"]
 }
