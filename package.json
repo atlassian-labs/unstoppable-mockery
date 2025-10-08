@@ -1,6 +1,6 @@
 {
   "name": "unstoppable-mockery",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "Apache-2.0",
@@ -62,5 +62,8 @@
     "ts-jest": "^29.4.1",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.39.0"
+  },
+  "dependencies": {
+    "type-fest": "^5.0.1"
   }
 }
