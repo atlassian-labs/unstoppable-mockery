@@ -1,5 +1,6 @@
-import type { Mocked } from './types';
+import type { PartialDeep } from 'type-fest';
 
+import type { Mocked } from './types';
 /**
  * Creates a mocked version of a class, replacing all prototype methods with jest mock functions.
  *
@@ -26,7 +27,7 @@ import type { Mocked } from './types';
  */
 export function mockClass<T>(
   template: new (...args: any[]) => T,
-  properties: Partial<T> = {},
+  properties?: PartialDeep<T>,
 ): Mocked<T> {
   const mockedObject = Object.getOwnPropertyNames(template.prototype).reduce(
     (prev, current) => {

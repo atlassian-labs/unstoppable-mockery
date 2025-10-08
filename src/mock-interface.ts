@@ -1,3 +1,5 @@
+import type { PartialDeep } from 'type-fest';
+
 import type { Mocked } from './types';
 
 /**
@@ -24,12 +26,12 @@ import type { Mocked } from './types';
  * @returns A mocked object based on an interface or class type
  */
 export function mockInterface<T extends object>(
-  overrides?: Partial<T>,
+  overrides?: PartialDeep<T>,
 ): Mocked<T> {
   return new Proxy({} as Mocked<T>, {
     get: (target, name) => {
       if (overrides && name in overrides) {
-        return overrides[name as keyof T];
+        return overrides[name as keyof PartialDeep<T>];
       }
 
       if (
@@ -43,4 +45,3 @@ export function mockInterface<T extends object>(
     },
   });
 }
-//
