@@ -37,8 +37,5 @@ export function mockClass<T>(
     {} as Mocked<T>,
   );
 
-  return {
-    ...mockedObject,
-    ...properties,
-  };
+  return Object.assign(mockedObject, properties);
 }
