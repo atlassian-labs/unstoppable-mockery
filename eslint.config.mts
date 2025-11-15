@@ -63,7 +63,7 @@ export default [
     languageOptions: {
       parserOptions: {
         projectService: true,
-        tsconfigRootDir: import.meta.url,
+        tsconfigRootDir: __dirname,
       },
     },
   },
