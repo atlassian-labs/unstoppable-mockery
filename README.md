@@ -1,4 +1,4 @@
-# unstoppable-mockery
+# @atlassian/unstoppable-mockery
 
 [![Atlassian license](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square)](LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
@@ -9,7 +9,7 @@ Unstoppable Mockery is a lightweight utility for creating type-safe, fully mocke
 ### Mocking Classes
 
 ```typescript
-import { mockClass } from 'unstoppable-mockery';
+import { mockClass } from '@atlassian/unstoppable-mockery';
 
 class MyService {
   doSomething() { /* ... */ }
@@ -28,7 +28,7 @@ expect(mock.getValue()).toBe(100);
 ### Mocking Interfaces
 
 ```typescript
-import { mockInterface } from 'unstoppable-mockery';
+import { mockInterface } from '@atlassian/unstoppable-mockery';
 
 interface ApiClient {
   fetchData: (id: string) => Promise<any>;
@@ -58,7 +58,7 @@ expect(jest.isMockFunction(mockApi.fetchData)).toBe(true);
 ## Installation
 
 ```sh
-npm install unstoppable-mockery --save-dev
+npm install @atlassian/unstoppable-mockery --save-dev
 ```
 
 ## Documentation
