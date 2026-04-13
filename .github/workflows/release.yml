@@ -37,4 +37,6 @@ jobs:
           output-modes: npm
 
       - name: Publish to Artifactory npm-public
-        run: npm publish --userconfig=./.npmrc-public --@atlassian:registry="https://packages.atlassian.com/api/npm/npm-public/"
+        run: npm publish
+        env:
+          NPM_CONFIG_USERCONFIG: ${{ github.workspace }}/.npmrc-public
