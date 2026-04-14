@@ -75,13 +75,14 @@ npm test
 
 ## Releasing
 
-Releases are published to [Artifactory npm-public](https://packages.atlassian.com/api/npm/npm-public/) and forwarded to npmjs.org.
+Releases are published to [Artifactory npm-public](https://packages.atlassian.com/api/npm/npm-public/) and forwarded to npmjs.org using [Changesets](https://github.com/changesets/changesets).
 
-To publish a new release:
+### How to release
 
-1. Bump the version in `package.json`.
-2. Create a [GitHub Release](https://github.com/atlassian-labs/unstoppable-mockery/releases/new) with a tag matching the new version (e.g. `1.3.0`).
-3. The [Release workflow](.github/workflows/release.yml) will automatically trigger, run tests, and publish the package using `changeset publish` via Artifactory.
+1. In your PR branch, run `yarn changeset` and follow the prompts to describe your changes and select a version bump type (patch/minor/major). This creates a changeset file — commit it with your PR.
+2. Merge your PR to `main`.
+3. The [Release workflow](.github/workflows/release.yml) will automatically open a **"Version Packages" PR** that bumps the version and updates the CHANGELOG.
+4. Review and merge the "Version Packages" PR — the workflow will then publish the new version to Artifactory automatically.
 
 > **Note:** Publishing uses [`atlassian-labs/artifact-publish-token`](https://github.com/atlassian-labs/artifact-publish-token) for authentication — no manual npm credentials are required.
 

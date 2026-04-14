@@ -1,8 +1,9 @@
 name: Release
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - main
 
 jobs:
   publish:
@@ -10,6 +11,7 @@ jobs:
     permissions:
       contents: write
       id-token: write
+      pull-requests: write
 
     steps:
       - name: Checkout code
@@ -36,7 +38,10 @@ jobs:
         with:
           output-modes: npm
 
-      - name: Publish to Artifactory npm-public
-        run: yarn release
+      - name: Create Release Pull Request or Publish to Artifactory
+        uses: changesets/action@v1
+        with:
+          publish: yarn release
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_USERCONFIG: ${{ github.workspace }}/.npmrc-public
