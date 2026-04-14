@@ -8,13 +8,14 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       id-token: write
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
         with:
+          fetch-depth: 0
           persist-credentials: false
 
       - name: Setup Node.js
@@ -29,21 +30,16 @@ jobs:
       - name: Run tests
         run: yarn test
 
-      - name: Build package
-        run: yarn build
-
       - name: Get Artifact Publish Token
         id: publish-token
         uses: atlassian-labs/artifact-publish-token@v1.0.1
         with:
           output-modes: npm
 
-      - name: Publish to Artifactory npm-public
-        run: |
-          ARTIFACTORY_PASSWORD=$(echo "${ARTIFACTORY_PASSWORD_BASE64}" | base64 -d)
-          AUTH_TOKEN=$(echo -n "${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}" | base64 -w 0)
-          echo "//packages.atlassian.com/api/npm/npm-public/:_auth=${AUTH_TOKEN}" > .npmrc-resolved
-          echo "//packages.atlassian.com/api/npm/npm-public/:email=build-team@atlassian.com" >> .npmrc-resolved
-          npm publish
+      - name: Create Release Pull Request or Publish to npm
+        uses: changesets/action@v1
+        with:
+          publish: yarn release
         env:
-          NPM_CONFIG_USERCONFIG: ${{ github.workspace }}/.npmrc-resolved
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_CONFIG_USERCONFIG: ${{ github.workspace }}/.npmrc-public
