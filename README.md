@@ -1,6 +1,6 @@
 # @atlassian/unstoppable-mockery
 
-[![Atlassian license](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square)](LICENSE) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
+[![Atlassian license](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat-square)](LICENSE) [![npm version](https://img.shields.io/npm/v/@atlassian/unstoppable-mockery.svg?style=flat-square)](https://www.npmjs.com/package/@atlassian/unstoppable-mockery) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
 Unstoppable Mockery is a lightweight utility for creating type-safe, fully mocked classes and interfaces for Jest tests. Unlike `jest.mock('<module-path>')`, it allows you to mock classes and interfaces directly, with full TypeScript support and without relying on module boundaries. This makes your tests more maintainable, readable, and less brittle to refactoring.
 
@@ -47,7 +47,7 @@ expect(mockApi.isConnected).toBe(true);
 expect(jest.isMockFunction(mockApi.fetchData)).toBe(true);
 ```
 
-### Why use unstoppable-mockery instead of jest.mock?
+### Why use @atlassian/unstoppable-mockery instead of jest.mock?
 
 - **Type Safety:** Directly mock classes and interfaces with full TypeScript support.
 - **No Module Boundaries:** Mock any class/interface, even if not exported from a module.
@@ -88,7 +88,7 @@ Releases are published to [Artifactory npm-public](https://packages.atlassian.co
 
 ## Contributions
 
-Contributions to unstoppable-mockery are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+Contributions to `@atlassian/unstoppable-mockery` are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ## License
 
