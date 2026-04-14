@@ -36,10 +36,7 @@ jobs:
         with:
           output-modes: npm
 
-      - name: Create Release Pull Request or Publish to npm
-        uses: changesets/action@v1
-        with:
-          publish: yarn release
+      - name: Publish to Artifactory npm-public
+        run: yarn release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_USERCONFIG: ${{ github.workspace }}/.npmrc-public
