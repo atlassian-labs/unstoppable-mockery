@@ -73,6 +73,18 @@ To run tests:
 npm test
 ```
 
+## Releasing
+
+Releases are published to [Artifactory npm-public](https://packages.atlassian.com/api/npm/npm-public/) and forwarded to npmjs.org.
+
+To publish a new release:
+
+1. Bump the version in `package.json`.
+2. Create a [GitHub Release](https://github.com/atlassian-labs/unstoppable-mockery/releases/new) with a tag matching the new version (e.g. `1.3.0`).
+3. The [Release workflow](.github/workflows/release.yml) will automatically trigger, run tests, and publish the package using `changeset publish` via Artifactory.
+
+> **Note:** Publishing uses [`atlassian-labs/artifact-publish-token`](https://github.com/atlassian-labs/artifact-publish-token) for authentication — no manual npm credentials are required.
+
 ## Contributions
 
 Contributions to unstoppable-mockery are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
