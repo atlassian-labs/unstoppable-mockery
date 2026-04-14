@@ -20,7 +20,6 @@ jobs:
         with:
           node-version: 24
           cache: 'yarn'
-          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -31,7 +30,13 @@ jobs:
       - name: Build package
         run: yarn build
 
-      - name: Publish to NPM
-        run: npm publish --access public --provenance
+      - name: Get Artifact Publish Token
+        id: publish-token
+        uses: atlassian-labs/artifact-publish-token@v1.0.1
+        with:
+          output-modes: npm
+
+      - name: Publish to Artifactory npm-public
+        run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_USERCONFIG: ${{ github.workspace }}/.npmrc-public
