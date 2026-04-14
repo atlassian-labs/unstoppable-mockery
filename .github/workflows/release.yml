@@ -40,7 +40,10 @@ jobs:
 
       - name: Publish to Artifactory npm-public
         run: |
-          sed -i "s|\${ARTIFACTORY_USERNAME}|${ARTIFACTORY_USERNAME}|g; s|\${ARTIFACTORY_PASSWORD_BASE64}|${ARTIFACTORY_PASSWORD_BASE64}|g" .npmrc-public
+          ARTIFACTORY_PASSWORD=$(echo "${ARTIFACTORY_PASSWORD_BASE64}" | base64 -d)
+          AUTH_TOKEN=$(echo -n "${ARTIFACTORY_USERNAME}:${ARTIFACTORY_PASSWORD}" | base64)
+          echo "//packages.atlassian.com/api/npm/npm-public/:_auth=${AUTH_TOKEN}" > .npmrc-resolved
+          echo "//packages.atlassian.com/api/npm/npm-public/:email=build-team@atlassian.com" >> .npmrc-resolved
           npm publish
         env:
-          NPM_CONFIG_USERCONFIG: ${{ github.workspace }}/.npmrc-public
+          NPM_CONFIG_USERCONFIG: ${{ github.workspace }}/.npmrc-resolved
