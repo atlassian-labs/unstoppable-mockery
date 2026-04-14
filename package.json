@@ -17,7 +17,8 @@
   ],
   "private": false,
   "publishConfig": {
-    "registry": "https://packages.atlassian.com/api/npm/npm-public/"
+    "registry": "https://packages.atlassian.com/api/npm/npm-public/",
+    "access": "public"
   },
   "contributors": [
     {
