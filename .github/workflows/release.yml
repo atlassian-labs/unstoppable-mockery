@@ -38,10 +38,9 @@ jobs:
         with:
           output-modes: npm
 
-      - name: Debug npmrc-public
-        run: cat .npmrc-public | sed 's/_authToken=.*/authToken=***REDACTED***/'
-
       - name: Publish to Artifactory npm-public
-        run: npm publish
+        run: |
+          sed -i "s|\${ARTIFACTORY_USERNAME}|${ARTIFACTORY_USERNAME}|g; s|\${ARTIFACTORY_PASSWORD_BASE64}|${ARTIFACTORY_PASSWORD_BASE64}|g" .npmrc-public
+          npm publish
         env:
           NPM_CONFIG_USERCONFIG: ${{ github.workspace }}/.npmrc-public
